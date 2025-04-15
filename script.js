@@ -11,18 +11,18 @@ const playAgainButton = document.querySelector('.play-again');
 
 document.addEventListener('DOMContentLoaded', function() {
     const allCards = [
-        { name: "Kthulu-snake", img: "/Card-1.png" },
-        { name: "merMan", img: "/Card 2.png" },
-        { name: "beholder", img: "/Card 3.png" },
-        { name: "strife", img: "/Card 4.png" },
-        { name: "griphon", img: "/Card 5.png" },
-        { name: "octopusMan", img: "/card 6.png" },
-        { name: "Kthulu-snake", img: "/Card-1.png" },
-        { name: "merMan", img: "/Card 2.png" },
-        { name: "beholder", img: "/Card 3.png" },
-        { name: "strife", img: "/Card 4.png" },
-        { name: "griphon", img: "/Card 5.png" },
-        { name: "octopusMan", img: "/card 6.png" }
+        { name: "Kthulu-snake", img: "/assets/Card 1.png" },
+        { name: "merMan", img: "/Assets/Card 2.png"},
+        { name: "beholder", img: "/Assets/Card 3.png"},
+        { name: "strife", img: "/Assets/Card 4.png"},
+        { name: "griphon", img: "/Assets/Card 5.png"},
+        { name: "octopusMan", img: "/Assets/Card 6.png"},
+        { name: "Kthulu-snake", img: "assets/Card 1.png" },
+        { name: "merMan", img: "/Assets/Card 2.png"},
+        { name: "beholder", img: "/Assets/Card 3.png"},
+        { name: "strife", img: "/Assets/Card 4.png"},
+        { name: "griphon", img: "/Assets/Card 5.png"},
+        { name: "octopusMan", img: "/Assets/Card 6.png"},
     ];
 
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const cardBack = document.createElement('img');
             cardBack.className = 'card-face card-back';
-            cardBack.src = '/black_and_white_deck_of_cards_inked_hp_lovecraft_ink_on_old_parchment_559433871.png';
+            cardBack.src = '/assets/black_and_white_deck_of_cards_inked_hp_lovecraft_ink_on_old_parchment_559433871.png';
             cardBack.style.height = cardHeight;
             cardBack.style.width = cardWidth;
 
