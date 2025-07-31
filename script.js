@@ -11,13 +11,13 @@ const playAgainButton = document.querySelector('.play-again');
 
 document.addEventListener('DOMContentLoaded', function() {
     const allCards = [
-        { name: "Kthulu-snake", img: "/assets/Card 1.png" },
+        { name: "Kthulu-snake", img: "/Assets/Card-1.png" },
         { name: "merMan", img: "/Assets/Card 2.png"},
         { name: "beholder", img: "/Assets/Card 3.png"},
         { name: "strife", img: "/Assets/Card 4.png"},
         { name: "griphon", img: "/Assets/Card 5.png"},
         { name: "octopusMan", img: "/Assets/Card 6.png"},
-        { name: "Kthulu-snake", img: "assets/Card 1.png" },
+        { name: "Kthulu-snake", img: "/Assets/Card-1.png" },
         { name: "merMan", img: "/Assets/Card 2.png"},
         { name: "beholder", img: "/Assets/Card 3.png"},
         { name: "strife", img: "/Assets/Card 4.png"},
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setUpCardPosition();
         showHealth()
         setTimeout(function() {
-            flipAllCards(true); // Automatically flip all cards after 1 second
+            flipAllCards(); // Automatically flip all cards after 1 second
         }, 2000);
         
         setTimeout(flipAllCardsBack, 4000);
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cardContainer.appendChild(card);
            
             deck.push(card);
-
+            console.log(deck)
         }
     }
 
@@ -131,26 +131,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function flipAllCards(isInitialFlip = false) {
-    deck.forEach(card => {
-      if(isInitialFlip){
-        card.classList.add('flipped')
-      } else{
-        card.classList.toggle('flipped')
-      }
-       setTimeout(function(card){
-        card.classList.remove('flipping');
-       }.bind(null,card), 600);
-       })
-      
-    };
+function flipAllCards() {
+  for (let i = 0; i < deck.length; i++) {
+    let card = deck[i];
+    card.classList.add('flipped');
+  }
+}
+
 
 
 function flipAllCardsBack() {
-    deck.forEach(card => {
-        card.classList.remove('flipped'); // Remove the 'flipped' class to revert to the original state
-    });
+  for (let i = 0; i < deck.length; i++) {
+    let card = deck[i];
+    card.classList.remove('flipped'); // Remove the 'flipped' class to revert to the original state
+  }
 }
+
 
 
 
@@ -162,20 +158,20 @@ function shuffleDeck(deck) {
 }
 
 function cardFlipOnClick() {
-    deck.forEach(card => {
-        card.addEventListener('click', function() {
-            if (isAnimating || flippedCards.includes(this)) return; // Prevent actions if animating or card already flipped
-
-            if (flippedCards.length < 2) {
-                this.classList.toggle('flipped');
-                flippedCards.push(this); // Add card to flippedCards array
-
-                if (flippedCards.length === 2) {
-                    checkForMatch(); // Check if two flipped cards match
-                }
-            }
-        });
-    });
+for (let i = 0; i < deck.length; i++) {
+const card = deck[i];
+card.addEventListener('click', function(event) {
+const clickedCard = event.currentTarget; // Explicitly reference the card that was clicked
+if ( flippedCards.includes(clickedCard)) return; // Prevent actions if animating or card already flipped
+if (flippedCards.length < 2) {
+clickedCard.classList.toggle('flipped');
+flippedCards.push(clickedCard); // Add card to flippedCards array
+if (flippedCards.length === 2) {
+checkForMatch(); // Check if two flipped cards match
+}
+}
+});
+}
 }
 
 function checkForMatch() {
@@ -195,7 +191,6 @@ function checkForMatch() {
     const card1Front = card1.querySelector('.card-front');
     const card2Front = card2.querySelector('.card-front');
 
-    if (card1Front && card2Front) {
         if (card1Front.src === card2Front.src) {
             // Cards match
             card1.classList.add('card-disabled'); // Apply CSS class
@@ -209,41 +204,37 @@ function checkForMatch() {
             }
         } else {
             // Cards don't match
-            setTimeout(() => {
-                card1.classList.remove('flipped');
-                card2.classList.remove('flipped');
-                flippedCards = [];
-                isAnimating = false;
-                currentHealth--;
-                updateHealth();
-            }, 1000);
-        }
-    } else {
-        console.error("Card elements missing front faces");
-        isAnimating = false;
+          
+    // Cards don't match
+    setTimeout(function () {
+        card1.classList.remove('flipped');
+        card2.classList.remove('flipped');
         flippedCards = [];
-    }
+        isAnimating = false;
+        currentHealth--;
+        updateHealth();
+    }, 1000);
 }
+}
+    
+    
 
 
-function updateHealth(){
-
-setTimeout(() => {
-
-    const healthImages = healthContainer.querySelectorAll('img');
-    for(let i = 0; i < healthImages.length; i++){
-        if(i < currentHealth){
-            healthImages[i].style.display = 'block';
-        } else{
-            healthImages[i].style.display = 'none';
+function updateHealth() {
+    setTimeout(function () {
+        const healthImages = healthContainer.querySelectorAll('img');
+        for (let i = 0; i < healthImages.length; i++) {
+            if (i < currentHealth) {
+                healthImages[i].style.display = 'block';
+            } else {
+                healthImages[i].style.display = 'none';
+            }
         }
-    }
 
-    if(currentHealth === 0){
-        gameOver();
-    }
-
-}, 600)
+        if (currentHealth === 0) {
+            gameOver();
+        }
+    }, 600);
 }
 
 function youWin(){
@@ -263,7 +254,7 @@ function gameOver(){
     playAgainButton.style.display = 'block';
 }
 
-playAgainButton.addEventListener('click', ()=>{
+playAgainButton.addEventListener('click', function () {
     location.reload();
 });
 
@@ -271,3 +262,5 @@ playAgainButton.addEventListener('click', ()=>{
 function showHealth() {
     healthContainer.style.display = 'flex';
 }
+
+
