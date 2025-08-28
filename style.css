@@ -93,13 +93,9 @@ body{
 
 }
 
-.lives2{
-    height: 150px;
-    width: 150px;
 
-}
 
-.lives3{
+.lives2,.lives3{
     height: 150px;
     width: 150px;
    
@@ -119,28 +115,11 @@ body{
 
 
 
- .game-over-image {
-    display: none;
-    position: absolute; 
-    height: 100vh;
+.win-image, .game-over-image{
+    display: none; 
+    position: absolute;
+    height: 100vh; 
     width: 100vw;
-    right: -5px;
-    bottom: -600px;
-    transform: translateY(-50%);
-    transition: transform 1s ease-out;
-    z-index: 1;
-}
-
-
-
-.win-image{
-    display: none;
-    position: absolute; 
-    height: 100vh;
-    width: 100vw;
-    bottom: -600px;
-    transform: translateY(-50%);
-    transition: transform 1s ease-out;
     z-index: 1;
 }
 
@@ -156,5 +135,6 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 
 
