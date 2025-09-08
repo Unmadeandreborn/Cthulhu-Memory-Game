@@ -11,13 +11,13 @@ const playAgainButton = document.querySelector('.play-again');
 
 document.addEventListener('DOMContentLoaded', function() {
     const allCards = [
-        { name: "Kthulu-snake", img: "/Assets/Card-1.png" },
+        { name: "Kthulu-snake", img:"/Assets/Card 1.png" },
         { name: "merMan", img: "/Assets/Card 2.png"},
         { name: "beholder", img: "/Assets/Card 3.png"},
         { name: "strife", img: "/Assets/Card 4.png"},
         { name: "griphon", img: "/Assets/Card 5.png"},
         { name: "octopusMan", img: "/Assets/Card 6.png"},
-        { name: "Kthulu-snake", img: "/Assets/Card-1.png" },
+        { name: "Kthulu-snake", img:"/Assets/Card 1.png"},
         { name: "merMan", img: "/Assets/Card 2.png"},
         { name: "beholder", img: "/Assets/Card 3.png"},
         { name: "strife", img: "/Assets/Card 4.png"},
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     startButton.addEventListener('click', function() {
         startButton.style.display = 'none';
-        const sound = new Audio("/Click-2.mp3");
+        const sound = new Audio("/Assets/Click-2.mp3");
         sound.play();
         startGame();
         shuffleDeck(deck)
@@ -262,5 +262,6 @@ playAgainButton.addEventListener('click', function () {
 function showHealth() {
     healthContainer.style.display = 'flex';
 }
+
 
 
