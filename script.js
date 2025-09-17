@@ -1,5 +1,4 @@
 const deck = [];
-let isAnimating = false
 let flippedCards = []
 const healthContainer = document.querySelector('.lives-container');
 const maxHealth = 3;
@@ -177,13 +176,11 @@ checkForMatch(); // Check if two flipped cards match
 function checkForMatch() {
     if (flippedCards.length !== 2) return; // Ensure exactly two cards are flipped
 
-    isAnimating = true;
 
     const [card1, card2] = flippedCards;
 
     if (!card1 || !card2) {
         console.error("One or both cards are undefined");
-        isAnimating = false;
         flippedCards = [];
         return;
     }
@@ -196,7 +193,6 @@ function checkForMatch() {
             card1.classList.add('card-disabled'); // Apply CSS class
             card2.classList.add('card-disabled'); // Apply CSS class
             flippedCards = [];
-            isAnimating = false;
 
             // Check for win condition
             if (deck.every(card => card.classList.contains('card-disabled'))) {
@@ -210,7 +206,6 @@ function checkForMatch() {
         card1.classList.remove('flipped');
         card2.classList.remove('flipped');
         flippedCards = [];
-        isAnimating = false;
         currentHealth--;
         updateHealth();
     }, 1000);
@@ -262,6 +257,7 @@ playAgainButton.addEventListener('click', function () {
 function showHealth() {
     healthContainer.style.display = 'flex';
 }
+
 
 
 
