@@ -173,43 +173,37 @@ checkForMatch(); // Check if two flipped cards match
 }
 }
 
-function checkForMatch() {
-    if (flippedCards.length !== 2) return; // Ensure exactly two cards are flipped
+function checkForMatch(){
+    if(flippedCards.length !== 2)return; 
 
+    const card1 = flippedCards[0];
+    const card2 = flippedCards[1]; 
 
-    const [card1, card2] = flippedCards;
+    const card1Front = card1.querySelector('.card-front'); 
+    const card2Front = card2.querySelector('.card-front'); 
 
-    if (!card1 || !card2) {
-        console.error("One or both cards are undefined");
-        flippedCards = [];
-        return;
-    }
-
-    const card1Front = card1.querySelector('.card-front');
-    const card2Front = card2.querySelector('.card-front');
-
-        if (card1Front.src === card2Front.src) {
-            // Cards match
-            card1.classList.add('card-disabled'); // Apply CSS class
-            card2.classList.add('card-disabled'); // Apply CSS class
-            flippedCards = [];
-
-            // Check for win condition
-            if (deck.every(card => card.classList.contains('card-disabled'))) {
-                youWin();
+    if(card1Front.src === card2Front.src){
+        card1.classList.add('card-disabled'); 
+        card2.classList.add('card-disabled'); 
+        flippedCards = []; 
+        let allDisabled = true; 
+        for(let i = 0; i < deck.length; i++){
+            if(!deck[i].classList.contains('card-disabled')){
+                allDisabled = false; 
+                break; 
             }
-        } else {
-            // Cards don't match
-          
-    // Cards don't match
-    setTimeout(function () {
-        card1.classList.remove('flipped');
-        card2.classList.remove('flipped');
-        flippedCards = [];
-        currentHealth--;
-        updateHealth();
-    }, 1000);
-}
+        }
+        if(allDisabled)youWin()
+    }else{
+        setTimeout(function(){
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped'); 
+            flippedCards = [];
+                currentHealth--; 
+                updateHealth()
+            
+        },1000);
+    }
 }
     
     
@@ -257,6 +251,7 @@ playAgainButton.addEventListener('click', function () {
 function showHealth() {
     healthContainer.style.display = 'flex';
 }
+
 
 
 
